@@ -40,22 +40,22 @@ class StatementPrinter
 
     private function totalAmount(Invoice $invoice): int
     {
-        $totalAmount = 0;
+        $result = 0;
         foreach($invoice->performances as $performance) {
-            $totalAmount += $this->amountFor($performance);
+            $result += $this->amountFor($performance);
         }
 
-        return $totalAmount;
+        return $result;
     }
 
     private function totalVolumeCredits(Invoice $invoice): float
     {
-        $volumeCredits = 0;
+        $result = 0;
         foreach ($invoice->performances as $performance) {
-            $volumeCredits += $this->volumeCreditsFor($performance);   
+            $result += $this->volumeCreditsFor($performance);   
         }
 
-        return $volumeCredits;
+        return $result;
     }
 
     private function volumeCreditsFor(Performance $aPerformance): float

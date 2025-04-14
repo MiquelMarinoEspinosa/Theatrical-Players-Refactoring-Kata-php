@@ -187,3 +187,4 @@ ps.bat
     - `extract method` the new loop logic
     - `inline variable` the `totalAmount` temp at `print` method
     - remove `totalAmount` temp variable
+    - rename internal methods local variables to `result`
