@@ -26,7 +26,7 @@ class StatementPrinter
 
         foreach ($invoice->performances as $performance) {
             $play = $this->plays[$performance->playId];
-            $thisAmount = $this->amountFor($performance, $play);
+            $thisAmount = $this->amountFor($performance);
 
             // add volume credits
             $volumeCredits += max($performance->audience - 30, 0);
@@ -47,14 +47,16 @@ class StatementPrinter
         return $result;
     }
 
-    /**
-     * @param array<string, Play> $plays
-     */
-    private function amountFor(Performance $aPerformance, Play $play): int
+    private function playFor(Performance $aPerformance): Play
+    {
+        return $this->plays[$aPerformance->playId];
+    }
+
+    private function amountFor(Performance $aPerformance): int
     {
         $result = 0;
 
-        switch ($play->type) {
+        switch ($this->playFor($aPerformance)->type) {
             case 'tragedy':
                 $result = 40000;
                 if ($aPerformance->audience > 30) {
@@ -71,7 +73,7 @@ class StatementPrinter
                 break;
 
             default:
-                throw new Error("Unknown type: {$play->type}");
+                throw new Error("Unknown type: {$this->playFor($aPerformance)->type}");
         }
         
         return $result;
