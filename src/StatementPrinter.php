@@ -9,7 +9,9 @@ use NumberFormatter;
 
 class StatementPrinter
 {
-    /** @var array<string, Play> */
+    /** 
+     * @var array<string, Play>
+     */
     private array $plays;
 
     /**
@@ -45,14 +47,14 @@ class StatementPrinter
 
     private function volumeCreditsFor(Performance $aPerformance): float
     {
-        $volumeCredits = 0;
-        $volumeCredits += max($aPerformance->audience - 30, 0);
+        $result = 0;
+        $result += max($aPerformance->audience - 30, 0);
 
         if ($this->playFor($aPerformance)->type === 'comedy') {
-            $volumeCredits += floor($aPerformance->audience / 5);
+            $result += floor($aPerformance->audience / 5);
         }
 
-        return $volumeCredits;
+        return $result;
     }
 
     private function amountFor(Performance $aPerformance): int

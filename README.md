@@ -172,3 +172,4 @@ ps.bat
   - Replace the `play` temp with a query in `print` scope
 - Inline variable `amountFor`
 - Extract `volumeCredits` logic into a method
+- Rename `volumeCredits` at `volumeCreditsFor` method to `result`
