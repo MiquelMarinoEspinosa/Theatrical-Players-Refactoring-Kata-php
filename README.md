@@ -169,3 +169,4 @@ ps.bat
 - Refactor replace `play` temp with a query
   - To replicate the same refactor proposed at the book using javascript, the `plays` parameter value should be saved at class field
   - Refactor replace the `play` temp with a query in `amountFor` scope
+  - Refactor replace the `play` temp with a query in `print` scope

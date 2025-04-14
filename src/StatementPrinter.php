@@ -25,18 +25,17 @@ class StatementPrinter
         $format = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
 
         foreach ($invoice->performances as $performance) {
-            $play = $this->plays[$performance->playId];
             $thisAmount = $this->amountFor($performance);
 
             // add volume credits
             $volumeCredits += max($performance->audience - 30, 0);
             // add extra credit for every ten comedy attendees
-            if ($play->type === 'comedy') {
+            if ($this->playFor($performance)->type === 'comedy') {
                 $volumeCredits += floor($performance->audience / 5);
             }
 
             // print line for this order
-            $result .= "  {$play->name}: {$format->formatCurrency($thisAmount / 100, 'USD')} ";
+            $result .= "  {$this->playFor($performance)->name}: {$format->formatCurrency($thisAmount / 100, 'USD')} ";
             $result .= "({$performance->audience} seats)\n";
 
             $totalAmount += $thisAmount;
