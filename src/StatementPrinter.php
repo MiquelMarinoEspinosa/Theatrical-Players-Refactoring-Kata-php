@@ -48,28 +48,28 @@ class StatementPrinter
      */
     private function amountFor(Performance $aPerformance, Play $play): int
     {
-        $thisAmount = 0;
+        $result = 0;
 
         switch ($play->type) {
             case 'tragedy':
-                $thisAmount = 40000;
+                $result = 40000;
                 if ($aPerformance->audience > 30) {
-                    $thisAmount += 1000 * ($aPerformance->audience - 30);
+                    $result += 1000 * ($aPerformance->audience - 30);
                 }
                 break;
 
             case 'comedy':
-                $thisAmount = 30000;
+                $result = 30000;
                 if ($aPerformance->audience > 20) {
-                    $thisAmount += 10000 + 500 * ($aPerformance->audience - 20);
+                    $result += 10000 + 500 * ($aPerformance->audience - 20);
                 }
-                $thisAmount += 300 * $aPerformance->audience;
+                $result += 300 * $aPerformance->audience;
                 break;
 
             default:
                 throw new Error("Unknown type: {$play->type}");
         }
         
-        return $thisAmount;
+        return $result;
     }
 }
