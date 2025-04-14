@@ -24,18 +24,17 @@ class StatementPrinter
         $this->plays = $plays;
 
         $result = "Statement for {$invoice->customer}\n";
-        $format = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
 
         foreach ($invoice->performances as $performance) {
             $volumeCredits += $this->volumeCreditsFor($performance);
 
-            $result .= "  {$this->playFor($performance)->name}: {$format->formatCurrency($this->amountFor($performance) / 100, 'USD')} ";
+            $result .= "  {$this->playFor($performance)->name}: {$this->usd($this->amountFor($performance))} ";
             $result .= "({$performance->audience} seats)\n";
 
             $totalAmount += $this->amountFor($performance);
         }
 
-        $result .= "Amount owed is {$format ->formatCurrency($totalAmount / 100, 'USD')}\n";
+        $result .= "Amount owed is {$this->usd($totalAmount)}\n";
         $result .= "You earned {$volumeCredits} credits";
         return $result;
     }
@@ -82,5 +81,11 @@ class StatementPrinter
         }
         
         return $result;
+    }
+
+    private function usd(float $aNumber): string
+    {
+        return new NumberFormatter('en_US', NumberFormatter::CURRENCY)
+            ->formatCurrency($aNumber / 100, 'USD');
     }
 }

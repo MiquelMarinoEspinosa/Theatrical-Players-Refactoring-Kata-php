@@ -173,3 +173,4 @@ ps.bat
 - Inline variable `amountFor`
 - Extract `volumeCredits` logic into a method
 - Rename `volumeCredits` at `volumeCreditsFor` method to `result`
+- Replace `format` temp variable with a query
