@@ -163,3 +163,4 @@ ps.bat
 - Every time a refactor step is done in the code, the approval tests will be executed and the code coverage will be scrutinized 
 
 #### Refactor steps
+- Extract `switch` statement into its own method called `amountFor`
