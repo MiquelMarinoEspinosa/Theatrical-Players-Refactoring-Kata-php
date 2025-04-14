@@ -25,14 +25,8 @@ class StatementPrinter
         $format = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
 
         foreach ($invoice->performances as $performance) {
-            // add volume credits
-            $volumeCredits += max($performance->audience - 30, 0);
-            // add extra credit for every ten comedy attendees
-            if ($this->playFor($performance)->type === 'comedy') {
-                $volumeCredits += floor($performance->audience / 5);
-            }
+            $volumeCredits += $this->volumeCreditsFor($performance);
 
-            // print line for this order
             $result .= "  {$this->playFor($performance)->name}: {$format->formatCurrency($this->amountFor($performance) / 100, 'USD')} ";
             $result .= "({$performance->audience} seats)\n";
 
@@ -47,6 +41,18 @@ class StatementPrinter
     private function playFor(Performance $aPerformance): Play
     {
         return $this->plays[$aPerformance->playId];
+    }
+
+    private function volumeCreditsFor(Performance $aPerformance): float
+    {
+        $volumeCredits = 0;
+        $volumeCredits += max($aPerformance->audience - 30, 0);
+
+        if ($this->playFor($aPerformance)->type === 'comedy') {
+            $volumeCredits += floor($aPerformance->audience / 5);
+        }
+
+        return $volumeCredits;
     }
 
     private function amountFor(Performance $aPerformance): int
