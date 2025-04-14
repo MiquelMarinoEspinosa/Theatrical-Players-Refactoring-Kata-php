@@ -19,7 +19,6 @@ class StatementPrinter
      */
     public function print(Invoice $invoice, array $plays): string
     {
-        $totalAmount = 0;
         $this->plays = $plays;
 
         $result = "Statement for {$invoice->customer}\n";
@@ -27,11 +26,9 @@ class StatementPrinter
         foreach ($invoice->performances as $performance) {
             $result .= "  {$this->playFor($performance)->name}: {$this->usd($this->amountFor($performance))} ";
             $result .= "({$performance->audience} seats)\n";
-
-            $totalAmount += $this->amountFor($performance);
         }
 
-        $result .= "Amount owed is {$this->usd($totalAmount)}\n";
+        $result .= "Amount owed is {$this->usd($this->totalAmount($invoice))}\n";
         $result .= "You earned {$this->totalVolumeCredits($invoice)} credits";
         return $result;
     }
@@ -39,6 +36,16 @@ class StatementPrinter
     private function playFor(Performance $aPerformance): Play
     {
         return $this->plays[$aPerformance->playId];
+    }
+
+    private function totalAmount(Invoice $invoice): int
+    {
+        $totalAmount = 0;
+        foreach($invoice->performances as $performance) {
+            $totalAmount += $this->amountFor($performance);
+        }
+
+        return $totalAmount;
     }
 
     private function totalVolumeCredits(Invoice $invoice): float

@@ -181,3 +181,9 @@ ps.bat
     - `extract function` which calculates `totalVolumeCredits`
     - `inline variable` with `totalVolumCredits` method
     - remove `volumeCredits` temp
+  - replace `totalAmount` temp with a query
+    - `split loop` to calculate `totalAmount`
+    - `slide statements` moving `totalAmount` closer to the new loop
+    - `extract method` the new loop logic
+    - `inline variable` the `totalAmount` temp at `print` method
+    - remove `totalAmount` temp variable
