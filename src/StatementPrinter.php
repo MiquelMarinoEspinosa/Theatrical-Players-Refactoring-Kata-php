@@ -9,6 +9,9 @@ use NumberFormatter;
 
 class StatementPrinter
 {
+    /** @var array<string, Play> */
+    private array $plays;
+
     /**
      * @param array<string, Play> $plays
      */
@@ -16,12 +19,13 @@ class StatementPrinter
     {
         $totalAmount = 0;
         $volumeCredits = 0;
+        $this->plays = $plays;
 
         $result = "Statement for {$invoice->customer}\n";
         $format = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
 
         foreach ($invoice->performances as $performance) {
-            $play = $plays[$performance->playId];
+            $play = $this->plays[$performance->playId];
             $thisAmount = $this->amountFor($performance, $play);
 
             // add volume credits

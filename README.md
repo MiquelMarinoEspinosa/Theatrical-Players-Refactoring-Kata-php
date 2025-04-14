@@ -163,6 +163,8 @@ ps.bat
 - Every time a refactor step is done in the code, the approval tests will be executed and the code coverage will be scrutinized 
 
 #### Refactor steps
-- Extract `switch` statement into its own method called `amountFor`
+- Extract `switch` statement into its own compose method called `amountFor`
 - Refactor pass the `play` instead of the array of `plays`
-- Refactor rename `thisAmount amountFor method scopped variable` to `result` 
+- Refactor rename `thisAmount amountFor method scopped variable` to `result`
+- Refactor replace `play` temp with a query
+  - To replicate the same refactor proposed at the book using javascript, the `plays` parameter value should be saved at class field
