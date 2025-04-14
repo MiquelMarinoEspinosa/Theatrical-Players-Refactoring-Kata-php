@@ -164,9 +164,10 @@ ps.bat
 
 #### Refactor steps
 - Extract `switch` statement into its own compose method called `amountFor`
-- Refactor pass the `play` instead of the array of `plays`
-- Refactor rename `thisAmount amountFor method scopped variable` to `result`
-- Refactor replace `play` temp with a query
+- Pass the `play` instead of the array of `plays`
+- Rename `thisAmount amountFor method scopped variable` to `result`
+- Replace `play` temp with a query
   - To replicate the same refactor proposed at the book using javascript, the `plays` parameter value should be saved at class field
-  - Refactor replace the `play` temp with a query in `amountFor` scope
-  - Refactor replace the `play` temp with a query in `print` scope
+  - Replace the `play` temp with a query in `amountFor` scope
+  - Replace the `play` temp with a query in `print` scope
+- Inline variable `amountFor`
