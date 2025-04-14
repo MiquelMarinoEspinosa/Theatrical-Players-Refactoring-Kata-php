@@ -1,5 +1,7 @@
-**/.idea
-*.iml
-**/build
-**/.gradle
-.DS_Store
+/.idea
+/build
+/vendor
+/.editorconfig
+/.phpunit.result.cache
+/composer.lock
+/composer.phar
