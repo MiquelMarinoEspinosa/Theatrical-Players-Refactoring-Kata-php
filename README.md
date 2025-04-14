@@ -164,3 +164,4 @@ ps.bat
 
 #### Refactor steps
 - Extract `switch` statement into its own method called `amountFor`
+- Refactor pass the `play` instead of the array of `plays`

@@ -22,7 +22,7 @@ class StatementPrinter
 
         foreach ($invoice->performances as $performance) {
             $play = $plays[$performance->playId];
-            $thisAmount = $this->amountFor($performance, $plays);
+            $thisAmount = $this->amountFor($performance, $play);
 
             // add volume credits
             $volumeCredits += max($performance->audience - 30, 0);
@@ -46,9 +46,8 @@ class StatementPrinter
     /**
      * @param array<string, Play> $plays
      */
-    private function amountFor(Performance $aPerformance, array $plays): int
+    private function amountFor(Performance $aPerformance, Play $play): int
     {
-        $play = $plays[$aPerformance->playId];
         $thisAmount = 0;
 
         switch ($play->type) {
