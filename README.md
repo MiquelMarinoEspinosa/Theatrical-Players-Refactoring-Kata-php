@@ -174,3 +174,10 @@ ps.bat
 - Extract `volumeCredits` logic into a method
 - Rename `volumeCredits` at `volumeCreditsFor` method to `result`
 - Replace `format` temp variable with a query
+- Remove `totalVolumeCredits` variable
+  - `split loop` to calculate the `volumeCredits`
+  - `slide statements` move declaration varaible next to the loop
+  - replace `totalVolumeCredits` temp with a query
+    - `extract function` which calculates `totalVolumeCredits`
+    - `inline variable` with `totalVolumCredits` method
+    - remove `volumeCredits` temp
