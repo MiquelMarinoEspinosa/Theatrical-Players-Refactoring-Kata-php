@@ -8,7 +8,7 @@
     "type": "project",
     "require-dev": {
         "approvals/approval-tests": "dev-Main",
-        "phpunit/phpunit": "^9.5",
+        "phpunit/phpunit": "^12.1",
         "phpstan/phpstan": "^1.9",
         "phpstan/phpstan-phpunit": "^1.3",
         "symplify/easy-coding-standard": "^11.1",
