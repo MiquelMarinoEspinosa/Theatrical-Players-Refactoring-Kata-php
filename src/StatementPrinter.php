@@ -39,9 +39,11 @@ class StatementPrinter
             ) extends Performance {
                 public Play $play;
                 public int $amount;
+                public float $volumeCredits;
             };
             $enrichedPerformance->play = $this->playFor($enrichedPerformance);
             $enrichedPerformance->amount = $this->amountFor($enrichedPerformance);
+            $enrichedPerformance->volumeCredits = $this->volumeCreditsFor($enrichedPerformance);
 
             return $enrichedPerformance; 
         }, $performances);
@@ -83,7 +85,7 @@ class StatementPrinter
     {
         $result = 0;
         foreach ($data->performances as $performance) {
-            $result += $this->volumeCreditsFor($performance);   
+            $result += $performance->volumeCredits;   
         }
 
         return $result;

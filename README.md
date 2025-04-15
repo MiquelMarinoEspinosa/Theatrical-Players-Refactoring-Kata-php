@@ -200,3 +200,4 @@ ps.bat
       - `move function playFor` call to the `enrichPerformances` method
       - replace function `playFor` call for `enrichPerformance-> play` access
       - `move function amountFor` to the `enrichPerformance` and replace `amountFor` function call for `enrichPerformance->amount`
+      - `move function volumeCreditsFor` to the `enrichPerformance` and replace `volumeCreditsFor` function call for `enrichPerformance->volumCredits`
