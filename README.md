@@ -213,3 +213,5 @@ ps.bat
 - implements `printHtml` method at `StatementPrinter`
 - type hint `StatementData` methods with `self` instead of object type
 - type hint `StatementPrinter` methods with `StatementData` instead of object type
+- Introducing `polymorphism`
+  - create `PerformanceCalculator` anonymous class when enriching performances
