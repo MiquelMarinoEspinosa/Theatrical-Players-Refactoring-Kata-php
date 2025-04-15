@@ -21,7 +21,7 @@ final class StatementData
     {
     }
 
-    public static function createStatementData(Play ...$plays, Invoice $invoice): self
+    public static function createStatementData(array $plays, Invoice $invoice): self
     {   
         $statementData = new self();
         self::$plays = $plays;
