@@ -35,16 +35,10 @@ final class StatementData
     private static function enrichPerformances(Performance ...$performances): array
     {
         return array_map(function(Performance $performance) {
-            $calculator = new class(
+            $calculator = new PerformanceCalculator(
                 $performance,
                 self::playFor($performance)
-            ){
-                public function __construct(
-                    public Performance $performance,
-                    public Play $play
-                ) {
-                }
-            };
+            );
             
             $enrichedPerformance = new class(
                 $performance->playId,
