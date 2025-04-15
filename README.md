@@ -215,3 +215,4 @@ ps.bat
 - type hint `StatementPrinter` methods with `StatementData` instead of object type
 - Introducing `polymorphism`
   - create `PerformanceCalculator` anonymous class when enriching performances
+  - add `Play` to the `PerformanceCalculator` as a field and assign it to the `enrichedPerformance` 
