@@ -4,59 +4,16 @@ declare(strict_types=1);
 
 namespace Theatrical;
 
-use Error;
 use NumberFormatter;
 
 class StatementPrinter
 {
-    /** 
-     * @var array<string, Play>
-     */
-    private array $plays;
-
     /**
      * @param array<string, Play> $plays
      */
     public function print(Invoice $invoice, array $plays): string
     {
-        $this->plays = $plays;
-
-        return $this->renderPlainText($this->createStatementData($invoice));
-    }
-
-    private function createStatementData(Invoice $invoice): object
-    {
-        $statementData = new class{
-            public string $customer;
-            public array $performances;
-            public int $totalAmount;
-            public float $totalVolumeCredits; 
-        };
-        $statementData->customer = $invoice->customer;
-        $statementData->performances = $this->enrichPerformances(...$invoice->performances);
-        $statementData->totalAmount = $this->totalAmount($statementData);
-        $statementData->totalVolumeCredits = $this->totalVolumeCredits($statementData);
-
-        return $statementData;
-    }
-
-    private function enrichPerformances(Performance ...$performances): array
-    {
-        return array_map(function(Performance $performance) {
-            $enrichedPerformance = new class(
-                $performance->playId,
-                $performance->audience
-            ) extends Performance {
-                public Play $play;
-                public int $amount;
-                public float $volumeCredits;
-            };
-            $enrichedPerformance->play = $this->playFor($enrichedPerformance);
-            $enrichedPerformance->amount = $this->amountFor($enrichedPerformance);
-            $enrichedPerformance->volumeCredits = $this->volumeCreditsFor($enrichedPerformance);
-
-            return $enrichedPerformance; 
-        }, $performances);
+        return $this->renderPlainText(StatementData::createStatementData($plays, $invoice));
     }
 
     /**
@@ -73,64 +30,6 @@ class StatementPrinter
 
         $result .= "Amount owed is {$this->usd($data->totalAmount)}\n";
         $result .= "You earned {$data->totalVolumeCredits} credits";
-        return $result;
-    }
-
-    private function playFor(Performance $aPerformance): Play
-    {
-        return $this->plays[$aPerformance->playId];
-    }
-
-    private function totalAmount(object $data): int
-    {
-        return array_reduce($data->performances, static function(int $totalAmount, Performance $aPerformance) {
-            return $totalAmount + $aPerformance->amount;
-        }, 0);
-    }
-
-    private function totalVolumeCredits(object $data): float
-    {
-        return array_reduce($data->performances, static function(int $totalVolumeCredits, Performance $aPerformance) {
-            return $totalVolumeCredits + $aPerformance->volumeCredits;
-        }, 0);
-    }
-
-    private function volumeCreditsFor(Performance $aPerformance): float
-    {
-        $result = 0;
-        $result += max($aPerformance->audience - 30, 0);
-
-        if ($aPerformance->play->type === 'comedy') {
-            $result += floor($aPerformance->audience / 5);
-        }
-
-        return $result;
-    }
-
-    private function amountFor(Performance $aPerformance): int
-    {
-        $result = 0;
-
-        switch ($aPerformance->play->type) {
-            case 'tragedy':
-                $result = 40000;
-                if ($aPerformance->audience > 30) {
-                    $result += 1000 * ($aPerformance->audience - 30);
-                }
-                break;
-
-            case 'comedy':
-                $result = 30000;
-                if ($aPerformance->audience > 20) {
-                    $result += 10000 + 500 * ($aPerformance->audience - 20);
-                }
-                $result += 300 * $aPerformance->audience;
-                break;
-
-            default:
-                throw new Error("Unknown type: {$aPerformance->play->type}");
-        }
-        
         return $result;
     }
 

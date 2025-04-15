@@ -208,4 +208,4 @@ ps.bat
     - `replace loop with pipeline` on `totalAmount` function
     - `replace loop with pipeline` on `totalVolumeCredits` function
   - `extract first phase` statement creation data into its own method
-  - refactor fix `totalVolumeCredits` name at reduce method
+  - move `StatementData` into its own class
