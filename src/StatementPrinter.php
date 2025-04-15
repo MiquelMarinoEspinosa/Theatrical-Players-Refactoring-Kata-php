@@ -6,7 +6,6 @@ namespace Theatrical;
 
 use Error;
 use NumberFormatter;
-use stdClass;
 
 class StatementPrinter
 {
@@ -44,8 +43,8 @@ class StatementPrinter
             $result .= "({$performance->audience} seats)\n";
         }
 
-        $result .= "Amount owed is {$this->usd($this->totalAmount($invoice))}\n";
-        $result .= "You earned {$this->totalVolumeCredits($invoice)} credits";
+        $result .= "Amount owed is {$this->usd($this->totalAmount($data))}\n";
+        $result .= "You earned {$this->totalVolumeCredits($data)} credits";
         return $result;
     }
 
@@ -54,20 +53,20 @@ class StatementPrinter
         return $this->plays[$aPerformance->playId];
     }
 
-    private function totalAmount(Invoice $invoice): int
+    private function totalAmount(object $data): int
     {
         $result = 0;
-        foreach($invoice->performances as $performance) {
+        foreach($data->performances as $performance) {
             $result += $this->amountFor($performance);
         }
 
         return $result;
     }
 
-    private function totalVolumeCredits(Invoice $invoice): float
+    private function totalVolumeCredits(object $data): float
     {
         $result = 0;
-        foreach ($invoice->performances as $performance) {
+        foreach ($data->performances as $performance) {
             $result += $this->volumeCreditsFor($performance);   
         }
 

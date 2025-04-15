@@ -193,3 +193,4 @@ ps.bat
     - introduce new anonymous class as intermidiate object
     - take `costumer` from `invoice` and add it to the intermediate object
     - take `performances` from `invoice` and add it to the intermediate object
+    - replace `invoice` parameter for intermediate object at `totalAmount` and `totalVolumeCredits` methods
