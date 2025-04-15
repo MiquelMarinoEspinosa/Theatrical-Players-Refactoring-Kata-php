@@ -20,6 +20,12 @@ class StatementPrinter
     public function print(Invoice $invoice, array $plays): string
     {
         $this->plays = $plays;
+
+        return $this->renderPlainText($this->createStatementData($invoice));
+    }
+
+    private function createStatementData(Invoice $invoice): object
+    {
         $statementData = new class{
             public string $customer;
             public array $performances;
@@ -31,7 +37,7 @@ class StatementPrinter
         $statementData->totalAmount = $this->totalAmount($statementData);
         $statementData->totalVolumeCredits = $this->totalVolumeCredits($statementData);
 
-        return $this->renderPlainText($statementData);
+        return $statementData;
     }
 
     private function enrichPerformances(Performance ...$performances): array

@@ -204,6 +204,7 @@ ps.bat
     - `move function` total calculations into the `data` new anonymous class
       - `move function totalAmount` into the `data` and replace the call by `data` class access
       - `move function totalVolumeCredits` into the `data` and replace the call by `data` anonymous class access
-- `replace loop with pipeline` on total functions
-  - `replace loop with pipeline` on `totalAmount` function
-  - `replace loop with pipeline` on `totalVolumeCredits` function
+  - `replace loop with pipeline` on total functions
+    - `replace loop with pipeline` on `totalAmount` function
+    - `replace loop with pipeline` on `totalVolumeCredits` function
+  - `extract first phase` statement creation data into its own method
