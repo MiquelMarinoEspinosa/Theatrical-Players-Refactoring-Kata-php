@@ -21,9 +21,12 @@ class StatementPrinter
     public function print(Invoice $invoice, array $plays): string
     {
         $statementData = new class{
-            public string $customer; 
+            public string $customer;
+            public array $performances; 
         };
         $statementData->customer = $invoice->customer;
+        $statementData->performances = $invoice->performances;
+
         return $this->renderPlainText($statementData, $invoice, $plays);
     }
 
@@ -36,7 +39,7 @@ class StatementPrinter
 
         $result = "Statement for {$data->customer}\n";
 
-        foreach ($invoice->performances as $performance) {
+        foreach ($data->performances as $performance) {
             $result .= "  {$this->playFor($performance)->name}: {$this->usd($this->amountFor($performance))} ";
             $result .= "({$performance->audience} seats)\n";
         }

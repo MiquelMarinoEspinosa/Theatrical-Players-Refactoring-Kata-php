@@ -192,3 +192,4 @@ ps.bat
     - `extract method` called `renderPlainText` text rendering
     - introduce new anonymous class as intermidiate object
     - take `costumer` from `invoice` and add it to the intermediate object
+    - take `performances` from `invoice` and add it to the intermediate object
