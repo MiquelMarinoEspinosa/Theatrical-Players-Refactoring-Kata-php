@@ -194,3 +194,4 @@ ps.bat
     - take `costumer` from `invoice` and add it to the intermediate object
     - take `performances` from `invoice` and add it to the intermediate object
     - replace `invoice` parameter for intermediate object at `totalAmount` and `totalVolumeCredits` methods
+    - remove unused `invoice` parameter at `renderPlainText` method

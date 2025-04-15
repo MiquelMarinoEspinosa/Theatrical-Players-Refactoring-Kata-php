@@ -26,13 +26,13 @@ class StatementPrinter
         $statementData->customer = $invoice->customer;
         $statementData->performances = $invoice->performances;
 
-        return $this->renderPlainText($statementData, $invoice, $plays);
+        return $this->renderPlainText($statementData, $plays);
     }
 
     /**
      * @param array<string, Play> $plays
      */
-    private function renderPlainText(object $data, Invoice $invoice, array $plays): string
+    private function renderPlainText(object $data, array $plays): string
     {
         $this->plays = $plays;
 
