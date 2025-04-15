@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Theatrical;
 
+use Error;
+
 final class StatementData
 {
     public string $customer;
@@ -37,7 +39,7 @@ final class StatementData
                 $performance,
                 self::playFor($performance)
             );
-            
+
             $enrichedPerformance = new class(
                 $performance->playId,
                 $performance->audience
@@ -46,21 +48,22 @@ final class StatementData
                 public int $amount;
                 public float $volumeCredits;
             };
-            
+
             $enrichedPerformance->play = $calculator->play;
             $enrichedPerformance->amount = $calculator->amount();
             $enrichedPerformance->volumeCredits = $calculator->volumeCredits();
 
-            return $enrichedPerformance; 
+            return $enrichedPerformance;
         }, $performances);
     }
 
     private static function createPerformanceCalculator(Performance $aPerformance, Play $aPlay): PerformanceCalculator
     {
-        return new PerformanceCalculator(
-            $aPerformance,
-            $aPlay
-        );
+        return match ($aPlay->type) {
+            'tragedy' => new TragedyCalculator($aPerformance, $aPlay),
+            'comedy' => new ComedyCalculator($aPerformance, $aPlay),
+            default => throw new Error("Unknown type: {$aPlay->type}")
+        };
     }
 
     private static function playFor(Performance $aPerformance): Play
