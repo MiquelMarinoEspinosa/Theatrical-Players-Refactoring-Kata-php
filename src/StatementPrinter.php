@@ -90,8 +90,8 @@ class StatementPrinter
 
     private function totalVolumeCredits(object $data): float
     {
-        return array_reduce($data->performances, static function(int $totalAmount, Performance $aPerformance) {
-            return $totalAmount + $aPerformance->volumeCredits;
+        return array_reduce($data->performances, static function(int $totalVolumeCredits, Performance $aPerformance) {
+            return $totalVolumeCredits + $aPerformance->volumeCredits;
         }, 0);
     }
 
