@@ -19,6 +19,14 @@ class StatementPrinter
      */
     public function print(Invoice $invoice, array $plays): string
     {
+        return $this->renderPlainText($invoice, $plays);
+    }
+
+    /**
+     * @param array<string, Play> $plays
+     */
+    private function renderPlainText(Invoice $invoice, array $plays): string
+    {
         $this->plays = $plays;
 
         $result = "Statement for {$invoice->customer}\n";

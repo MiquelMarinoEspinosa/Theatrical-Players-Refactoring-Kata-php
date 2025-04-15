@@ -188,3 +188,5 @@ ps.bat
     - `inline variable` the `totalAmount` temp at `print` method
     - remove `totalAmount` temp variable
     - rename internal methods local variables to `result`
+  - `split phase` to decouple the calculation from the rendering to pave the way through `HTML` implementation
+    - `extract method` called `renderPlainText` text rendering
