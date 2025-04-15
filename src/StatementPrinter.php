@@ -38,9 +38,11 @@ class StatementPrinter
                 $performance->audience
             ) extends Performance {
                 public Play $play;
+                public int $amount;
             };
             $enrichedPerformance->play = $this->playFor($enrichedPerformance);
-            
+            $enrichedPerformance->amount = $this->amountFor($enrichedPerformance);
+
             return $enrichedPerformance; 
         }, $performances);
     }
@@ -53,7 +55,7 @@ class StatementPrinter
         $result = "Statement for {$data->customer}\n";
 
         foreach ($data->performances as $performance) {
-            $result .= "  {$performance->play->name}: {$this->usd($this->amountFor($performance))} ";
+            $result .= "  {$performance->play->name}: {$this->usd($performance->amount)} ";
             $result .= "({$performance->audience} seats)\n";
         }
 
@@ -71,7 +73,7 @@ class StatementPrinter
     {
         $result = 0;
         foreach($data->performances as $performance) {
-            $result += $this->amountFor($performance);
+            $result += $performance->amount;
         }
 
         return $result;

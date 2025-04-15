@@ -199,3 +199,4 @@ ps.bat
       - first iteration with `anonymous class` with extends from `Performance` which makes a copy
       - `move function playFor` call to the `enrichPerformances` method
       - replace function `playFor` call for `enrichPerformance-> play` access
+      - `move function amountFor` to the `enrichPerformance` and replace `amountFor` function call for `enrichPerformance->amount`
