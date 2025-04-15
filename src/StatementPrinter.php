@@ -6,6 +6,7 @@ namespace Theatrical;
 
 use Error;
 use NumberFormatter;
+use stdClass;
 
 class StatementPrinter
 {
@@ -19,13 +20,14 @@ class StatementPrinter
      */
     public function print(Invoice $invoice, array $plays): string
     {
-        return $this->renderPlainText($invoice, $plays);
+        $statementData = new class{};
+        return $this->renderPlainText($statementData, $invoice, $plays);
     }
 
     /**
      * @param array<string, Play> $plays
      */
-    private function renderPlainText(Invoice $invoice, array $plays): string
+    private function renderPlainText(object $data, Invoice $invoice, array $plays): string
     {
         $this->plays = $plays;
 

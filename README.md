@@ -190,3 +190,4 @@ ps.bat
     - rename internal methods local variables to `result`
   - `split phase` to decouple the calculation from the rendering to pave the way through `HTML` implementation
     - `extract method` called `renderPlainText` text rendering
+    - introduce new anonymous class as data container or DTO
