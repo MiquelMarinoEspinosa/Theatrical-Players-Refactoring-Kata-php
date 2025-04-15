@@ -24,9 +24,23 @@ class StatementPrinter
             public array $performances; 
         };
         $statementData->customer = $invoice->customer;
-        $statementData->performances = $invoice->performances;
+        $statementData->performances = $this->enrichPerformances(...$invoice->performances);
 
         return $this->renderPlainText($statementData, $plays);
+    }
+
+    private function enrichPerformances(Performance ...$performances): array
+    {
+        return array_map(function(Performance $performance) {
+            $enrichedPerformance = new class(
+                $performance->playId,
+                $performance->audience
+            ) extends Performance {
+                public Play $play;
+            };
+            
+            return $enrichedPerformance; 
+        }, $performances);
     }
 
     /**

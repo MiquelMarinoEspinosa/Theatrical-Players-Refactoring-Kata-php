@@ -195,3 +195,5 @@ ps.bat
     - take `performances` from `invoice` and add it to the intermediate object
     - replace `invoice` parameter for intermediate object at `totalAmount` and `totalVolumeCredits` methods
     - remove unused `invoice` parameter at `renderPlainText` method
+    - create `enrichPerformances` method to aim adding the `play` at the performances 
+      - first iteration with `anonymous class` with extends from `Performance` which makes a copy
