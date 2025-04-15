@@ -219,3 +219,4 @@ ps.bat
   - Extract `PerformanceCalculator` into its own class
   - `move function amountFor` to the `PerformanceCalculator` class and turn the `amountFor` method into a `delegated method` wich eventually calls the `PerformanceCalculator` method
   - `inline method` to call `PerformanceCalculator` new method instead of the `delegated method`
+  - `move function volumeCredits` to the `PerformanceCalculator` class and turn the `volumeCredits` method into a `delegated method` wich eventually calls the `PerformanceCalculator` method

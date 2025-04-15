@@ -76,13 +76,6 @@ final class StatementData
 
     private static function volumeCreditsFor(Performance $aPerformance): float
     {
-        $result = 0;
-        $result += max($aPerformance->audience - 30, 0);
-
-        if ($aPerformance->play->type === 'comedy') {
-            $result += floor($aPerformance->audience / 5);
-        }
-
-        return $result;
+        return new PerformanceCalculator($aPerformance, self::playFor($aPerformance))->volumeCredits();
     }
 }
