@@ -49,7 +49,7 @@ final class StatementData
             
             $enrichedPerformance->play = $calculator->play;
             $enrichedPerformance->amount = $calculator->amount();
-            $enrichedPerformance->volumeCredits = self::volumeCreditsFor($enrichedPerformance);
+            $enrichedPerformance->volumeCredits = $calculator->volumeCredits();
 
             return $enrichedPerformance; 
         }, $performances);
@@ -72,10 +72,5 @@ final class StatementData
         return array_reduce($data->performances, static function(int $totalVolumeCredits, Performance $aPerformance) {
             return $totalVolumeCredits + $aPerformance->volumeCredits;
         }, 0);
-    }
-
-    private static function volumeCreditsFor(Performance $aPerformance): float
-    {
-        return new PerformanceCalculator($aPerformance, self::playFor($aPerformance))->volumeCredits();
     }
 }
