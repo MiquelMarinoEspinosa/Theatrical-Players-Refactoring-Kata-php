@@ -188,19 +188,21 @@ ps.bat
     - `inline variable` the `totalAmount` temp at `print` method
     - remove `totalAmount` temp variable
     - rename internal methods local variables to `result`
-  - `split phase` to decouple the calculation from the rendering to pave the way through `HTML` implementation
-    - `extract method` called `renderPlainText` text rendering
-    - introduce new anonymous class as intermidiate object
-    - take `costumer` from `invoice` and add it to the intermediate object
-    - take `performances` from `invoice` and add it to the intermediate object
-    - replace `invoice` parameter for intermediate object at `totalAmount` and `totalVolumeCredits` methods
-    - remove unused `invoice` parameter at `renderPlainText` method
-    - create `enrichPerformances` method to aim adding the `play` at the performances 
-      - first iteration with `anonymous class` with extends from `Performance` which makes a copy
-      - `move function playFor` call to the `enrichPerformances` method
-      - replace function `playFor` call for `enrichedPerformance-> play` access
-      - `move function amountFor` to the `enrichedPerformance` and replace `amountFor` function call for `enrichedPerformance->amount`
-      - `move function volumeCreditsFor` to the `enrichedPerformance` and replace `volumeCreditsFor` function call for `enrichedPerformance->volumCredits`
-      - `move function` total calculations into the `data` new anonymous class
-        - `move function totalAmount` into the `data` and replace the call by `data` class access
-        - `move function totalVolumeCredits` into the `data` and replace the call by `data` anonymous class access
+- `split phase` to decouple the calculation from the rendering to pave the way through `HTML` implementation
+  - `extract method` called `renderPlainText` text rendering
+  - introduce new anonymous class as intermidiate object
+  - take `costumer` from `invoice` and add it to the intermediate object
+  - take `performances` from `invoice` and add it to the intermediate object
+  - replace `invoice` parameter for intermediate object at `totalAmount` and `totalVolumeCredits` methods
+  - remove unused `invoice` parameter at `renderPlainText` method
+  - create `enrichPerformances` method to aim adding the `play` at the performances 
+    - first iteration with `anonymous class` with extends from `Performance` which makes a copy
+    - `move function playFor` call to the `enrichPerformances` method
+    - replace function `playFor` call for `enrichedPerformance-> play` access
+    - `move function amountFor` to the `enrichedPerformance` and replace `amountFor` function call for `enrichedPerformance->amount`
+    - `move function volumeCreditsFor` to the `enrichedPerformance` and replace `volumeCreditsFor` function call for `enrichedPerformance->volumCredits`
+    - `move function` total calculations into the `data` new anonymous class
+      - `move function totalAmount` into the `data` and replace the call by `data` class access
+      - `move function totalVolumeCredits` into the `data` and replace the call by `data` anonymous class access
+- `replace loop with pipeline` on total functions
+  - `replace loop with pipeline` on `totalAmount` function
