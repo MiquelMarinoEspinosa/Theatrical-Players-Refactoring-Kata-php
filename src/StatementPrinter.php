@@ -19,6 +19,14 @@ class StatementPrinter
     /**
      * @param array<string, Play> $plays
      */
+    public function printHtml(Invoice $invoice, array $plays): string
+    {
+        return $this->renderHtml(StatementData::createStatementData($plays, $invoice));
+    }
+
+    /**
+     * @param array<string, Play> $plays
+     */
     private function renderPlainText(object $data): string
     {
         $result = "Statement for {$data->customer}\n";
@@ -30,6 +38,24 @@ class StatementPrinter
 
         $result .= "Amount owed is {$this->usd($data->totalAmount)}\n";
         $result .= "You earned {$data->totalVolumeCredits} credits";
+        return $result;
+    }
+
+    /**
+     * @param array<string, Play> $plays
+     */
+    private function renderHtml(object $data): string
+    {
+        $result = "<h1>Statement for {$data->customer}</h1>\n";
+        $result .= "<table>\n";
+        $result .= "<tr><th>play</th><th>seats</th><th>cost</th></tr>\n";
+        foreach ($data->performances as $performance) {
+            $result .= "  <tr><td>{$performance->play->name}</td><td>{$this->usd($performance->amount)}</td>";
+            $result .= "<td>({$performance->audience} seats)</td></tr>\n";
+        }
+        $result .= "</table>\n";
+        $result .= "<p>Amount owed is <em>{$this->usd($data->totalAmount)}</em></p>\n";
+        $result .= "<p>You earned <em>{$data->totalVolumeCredits}</em> credits</p>\n";
         return $result;
     }
 

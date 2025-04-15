@@ -210,3 +210,4 @@ ps.bat
   - `extract first phase` statement creation data into its own method
   - move `StatementData` into its own class
   - fix `plays` parameter type hint error at `StatementData`
+- implements `printHtml` method at `StatementPrinter`
