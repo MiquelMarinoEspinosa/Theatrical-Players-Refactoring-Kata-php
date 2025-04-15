@@ -211,3 +211,4 @@ ps.bat
   - move `StatementData` into its own class
   - fix `plays` parameter type hint error at `StatementData`
 - implements `printHtml` method at `StatementPrinter`
+- type hint `StatementData` methods with `self` instead of object

@@ -56,14 +56,14 @@ final class StatementData
         return self::$plays[$aPerformance->playId];
     }
 
-    private static function totalAmount(object $data): int
+    private static function totalAmount(self $data): int
     {
         return array_reduce($data->performances, static function(int $totalAmount, Performance $aPerformance) {
             return $totalAmount + $aPerformance->amount;
         }, 0);
     }
 
-    private static function totalVolumeCredits(object $data): float
+    private static function totalVolumeCredits(self $data): float
     {
         return array_reduce($data->performances, static function(int $totalVolumeCredits, Performance $aPerformance) {
             return $totalVolumeCredits + $aPerformance->volumeCredits;
