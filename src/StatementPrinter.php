@@ -19,6 +19,7 @@ class StatementPrinter
      */
     public function print(Invoice $invoice, array $plays): string
     {
+        $this->plays = $plays;
         $statementData = new class{
             public string $customer;
             public array $performances; 
@@ -38,6 +39,7 @@ class StatementPrinter
             ) extends Performance {
                 public Play $play;
             };
+            $enrichedPerformance->play = $this->playFor($enrichedPerformance);
             
             return $enrichedPerformance; 
         }, $performances);
@@ -48,8 +50,6 @@ class StatementPrinter
      */
     private function renderPlainText(object $data, array $plays): string
     {
-        $this->plays = $plays;
-
         $result = "Statement for {$data->customer}\n";
 
         foreach ($data->performances as $performance) {
