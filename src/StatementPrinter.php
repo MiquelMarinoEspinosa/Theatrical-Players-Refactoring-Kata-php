@@ -27,7 +27,7 @@ class StatementPrinter
     /**
      * @param array<string, Play> $plays
      */
-    private function renderPlainText(object $data): string
+    private function renderPlainText(StatementData $data): string
     {
         $result = "Statement for {$data->customer}\n";
 
@@ -44,7 +44,7 @@ class StatementPrinter
     /**
      * @param array<string, Play> $plays
      */
-    private function renderHtml(object $data): string
+    private function renderHtml(StatementData $data): string
     {
         $result = "<h1>Statement for {$data->customer}</h1>\n";
         $result .= "<table>\n";
