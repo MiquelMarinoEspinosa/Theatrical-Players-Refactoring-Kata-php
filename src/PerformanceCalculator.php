@@ -18,7 +18,7 @@ class PerformanceCalculator
     {
         $result = 0;
 
-        switch ($this->performance->play->type) {
+        switch ($this->play->type) {
             case 'tragedy':
                 $result = 40000;
                 if ($this->performance->audience > 30) {
@@ -35,7 +35,7 @@ class PerformanceCalculator
                 break;
 
             default:
-                throw new Error("Unknown type: {$this->performance->play->type}");
+                throw new Error("Unknown type: {$this->play->type}");
         }
         
         return $result;

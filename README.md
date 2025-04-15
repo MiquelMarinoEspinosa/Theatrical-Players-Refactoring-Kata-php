@@ -217,4 +217,5 @@ ps.bat
   - create `PerformanceCalculator` anonymous class when enriching performances
   - add `Play` to the `PerformanceCalculator` as a field and assign it to the `enrichedPerformance`
   - Extract `PerformanceCalculator` into its own class
-  - `move function amountFor` to the `PerformanceCalculator` class
+  - `move function amountFor` to the `PerformanceCalculator` class and turn the `amountFor` method into a `delegated method` wich eventually calls the `PerformanceCalculator` method
+  - `inline method` to call `PerformanceCalculator` new method instead of the `delegated method`

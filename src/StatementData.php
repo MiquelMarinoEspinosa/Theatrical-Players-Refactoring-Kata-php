@@ -48,7 +48,7 @@ final class StatementData
             };
             
             $enrichedPerformance->play = $calculator->play;
-            $enrichedPerformance->amount = self::amountFor($enrichedPerformance);
+            $enrichedPerformance->amount = $calculator->amount();
             $enrichedPerformance->volumeCredits = self::volumeCreditsFor($enrichedPerformance);
 
             return $enrichedPerformance; 
@@ -84,10 +84,5 @@ final class StatementData
         }
 
         return $result;
-    }
-
-    private static function amountFor(Performance $aPerformance): int
-    {
-        return new PerformanceCalculator($aPerformance, self::playFor($aPerformance))->amount();
     }
 }
