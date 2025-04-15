@@ -77,19 +77,16 @@ class StatementPrinter
 
     private function totalAmount(object $data): int
     {
-        return array_reduce($data->performances, static function(int $totalAmount, Performance $aPerformance){
+        return array_reduce($data->performances, static function(int $totalAmount, Performance $aPerformance) {
             return $totalAmount + $aPerformance->amount;
         }, 0);
     }
 
     private function totalVolumeCredits(object $data): float
     {
-        $result = 0;
-        foreach ($data->performances as $performance) {
-            $result += $performance->volumeCredits;   
-        }
-
-        return $result;
+        return array_reduce($data->performances, static function(int $totalAmount, Performance $aPerformance) {
+            return $totalAmount + $aPerformance->volumeCredits;
+        }, 0);
     }
 
     private function volumeCreditsFor(Performance $aPerformance): float

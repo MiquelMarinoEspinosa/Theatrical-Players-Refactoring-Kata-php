@@ -206,3 +206,4 @@ ps.bat
       - `move function totalVolumeCredits` into the `data` and replace the call by `data` anonymous class access
 - `replace loop with pipeline` on total functions
   - `replace loop with pipeline` on `totalAmount` function
+  - `replace loop with pipeline` on `totalVolumeCredits` function
