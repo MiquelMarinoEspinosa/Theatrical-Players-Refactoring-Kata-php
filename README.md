@@ -203,3 +203,4 @@ ps.bat
       - `move function volumeCreditsFor` to the `enrichedPerformance` and replace `volumeCreditsFor` function call for `enrichedPerformance->volumCredits`
       - `move function` total calculations into the `data` new anonymous class
         - `move function totalAmount` into the `data` and replace the call by `data` class access
+        - `move function totalVolumeCredits` into the `data` and replace the call by `data` anonymous class access

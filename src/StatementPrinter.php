@@ -23,13 +23,15 @@ class StatementPrinter
         $statementData = new class{
             public string $customer;
             public array $performances;
-            public int $totalAmount; 
+            public int $totalAmount;
+            public float $totalVolumeCredits; 
         };
         $statementData->customer = $invoice->customer;
         $statementData->performances = $this->enrichPerformances(...$invoice->performances);
         $statementData->totalAmount = $this->totalAmount($statementData);
+        $statementData->totalVolumeCredits = $this->totalVolumeCredits($statementData);
 
-        return $this->renderPlainText($statementData, $plays);
+        return $this->renderPlainText($statementData);
     }
 
     private function enrichPerformances(Performance ...$performances): array
@@ -64,7 +66,7 @@ class StatementPrinter
         }
 
         $result .= "Amount owed is {$this->usd($data->totalAmount)}\n";
-        $result .= "You earned {$this->totalVolumeCredits($data)} credits";
+        $result .= "You earned {$data->totalVolumeCredits} credits";
         return $result;
     }
 
