@@ -221,3 +221,4 @@ ps.bat
   - `inline method` to call `PerformanceCalculator` new method instead of the `delegated method`
   - `move function volumeCredits` to the `PerformanceCalculator` class and turn the `volumeCredits` method into a `amountFor delegated method` wich eventually calls the `PerformanceCalculator` method
   - `inline method` to call `PerformanceCalculator` new method instead of the `volumeCreditsFor delegated method`
+  - replace `PerformanceCalculator` at `StatementData` with a factory function

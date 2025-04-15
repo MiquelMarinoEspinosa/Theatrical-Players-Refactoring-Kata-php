@@ -33,7 +33,7 @@ final class StatementData
     private static function enrichPerformances(Performance ...$performances): array
     {
         return array_map(function(Performance $performance) {
-            $calculator = new PerformanceCalculator(
+            $calculator = self::createPerformanceCalculator(
                 $performance,
                 self::playFor($performance)
             );
@@ -53,6 +53,14 @@ final class StatementData
 
             return $enrichedPerformance; 
         }, $performances);
+    }
+
+    private static function createPerformanceCalculator(Performance $aPerformance, Play $aPlay): PerformanceCalculator
+    {
+        return new PerformanceCalculator(
+            $aPerformance,
+            $aPlay
+        );
     }
 
     private static function playFor(Performance $aPerformance): Play
