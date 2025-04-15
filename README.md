@@ -198,3 +198,4 @@ ps.bat
     - create `enrichPerformances` method to aim adding the `play` at the performances 
       - first iteration with `anonymous class` with extends from `Performance` which makes a copy
       - `move function playFor` call to the `enrichPerformances` method
+      - replace function `playFor` call for `enrichPerformance-> play` access

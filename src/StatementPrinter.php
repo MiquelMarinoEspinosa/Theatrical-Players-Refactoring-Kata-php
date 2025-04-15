@@ -48,12 +48,12 @@ class StatementPrinter
     /**
      * @param array<string, Play> $plays
      */
-    private function renderPlainText(object $data, array $plays): string
+    private function renderPlainText(object $data): string
     {
         $result = "Statement for {$data->customer}\n";
 
         foreach ($data->performances as $performance) {
-            $result .= "  {$this->playFor($performance)->name}: {$this->usd($this->amountFor($performance))} ";
+            $result .= "  {$performance->play->name}: {$this->usd($this->amountFor($performance))} ";
             $result .= "({$performance->audience} seats)\n";
         }
 
@@ -92,7 +92,7 @@ class StatementPrinter
         $result = 0;
         $result += max($aPerformance->audience - 30, 0);
 
-        if ($this->playFor($aPerformance)->type === 'comedy') {
+        if ($aPerformance->play->type === 'comedy') {
             $result += floor($aPerformance->audience / 5);
         }
 
@@ -103,7 +103,7 @@ class StatementPrinter
     {
         $result = 0;
 
-        switch ($this->playFor($aPerformance)->type) {
+        switch ($aPerformance->play->type) {
             case 'tragedy':
                 $result = 40000;
                 if ($aPerformance->audience > 30) {
@@ -120,7 +120,7 @@ class StatementPrinter
                 break;
 
             default:
-                throw new Error("Unknown type: {$this->playFor($aPerformance)->type}");
+                throw new Error("Unknown type: {$aPerformance->play->type}");
         }
         
         return $result;
