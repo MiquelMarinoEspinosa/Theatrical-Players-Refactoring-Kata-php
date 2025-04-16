@@ -19,9 +19,7 @@ final class ComedyCalculator extends PerformanceCalculator
 
     public function volumeCredits(): float
     {
-        $result = parent::volumeCredits();
-        $result += floor($this->performance->audience / 5);
-
-        return $result;
+        return parent::volumeCredits()
+            + floor($this->performance->audience / 5);
     }
 }

@@ -16,9 +16,6 @@ abstract class PerformanceCalculator
 
     public function volumeCredits(): float
     {
-        $result = 0;
-        $result += max($this->performance->audience - 30, 0);
-
-        return $result;
+        return max($this->performance->audience - 30, 0);
     }
 }
