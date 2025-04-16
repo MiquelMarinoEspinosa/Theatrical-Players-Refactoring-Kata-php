@@ -190,7 +190,7 @@ ps.bat
     - rename internal methods local variables to `result`
 - `split phase` to decouple the calculation from the rendering to pave the way through `HTML` implementation
   - `extract method` called `renderPlainText` text rendering
-  - introduce new anonymous class as intermidiate object
+  - introduce new anonymous class as intermediate object
   - take `costumer` from `invoice` and add it to the intermediate object
   - take `performances` from `invoice` and add it to the intermediate object
   - replace `invoice` parameter for intermediate object at `totalAmount` and `totalVolumeCredits` methods
@@ -223,3 +223,5 @@ ps.bat
   - `inline method` to call `PerformanceCalculator` new method instead of the `volumeCreditsFor delegated method`
   - replace `PerformanceCalculator` at `StatementData` with a factory function
   - create `TragedyCalculator` and `ComedyCalculator` subclasses and instantiate them at the new `factory method`
+  - `replace conditional with polymorphism`
+    - move calculation of amounts for `tragedy` to `TragedyCalculator`
