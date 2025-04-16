@@ -160,6 +160,7 @@ ps.bat
 #### Strategy
 - The current `approval tests` cover the 100% code of `StatementPrinter.php` class making the scenario ideal to start the refactor `right away`
 - Emily Bache's recomendation will be followed using the `chapter 2 refactoring Martin Fowler's book` indications
+  - The [Martin Fowler's](Marting_fowler_refactoring_sample.pdf) guide has been added at the sorce code
 - Every time a refactor step is done in the code, the approval tests will be executed and the code coverage will be scrutinized 
 
 #### Refactor steps
