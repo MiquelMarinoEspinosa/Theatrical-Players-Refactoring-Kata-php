@@ -19,10 +19,6 @@ abstract class PerformanceCalculator
         $result = 0;
         $result += max($this->performance->audience - 30, 0);
 
-        if ($this->play->type === 'comedy') {
-            $result += floor($this->performance->audience / 5);
-        }
-
         return $result;
     }
 }
