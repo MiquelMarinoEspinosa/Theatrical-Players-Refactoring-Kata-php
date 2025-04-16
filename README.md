@@ -226,3 +226,4 @@ ps.bat
   - `replace conditional with polymorphism`
     - move calculation of amounts for `tragedy` to `TragedyCalculator`
     - move calculation of amounts for `comedy` to `ComedyCalculator`
+    - make the `amount` method `abstract` as well as the `PerformanceCalculator` class

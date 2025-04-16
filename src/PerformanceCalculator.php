@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Theatrical;
 
-use Error;
-
-class PerformanceCalculator
+abstract class PerformanceCalculator
 {
     public function __construct(
         public Performance $performance,
@@ -14,17 +12,7 @@ class PerformanceCalculator
     ) {
     }
 
-    public function amount(): int
-    {
-        $result = 0;
-
-        switch ($this->play->type) {
-            default:
-                throw new Error("Unknown type: {$this->play->type}");
-        }
-        
-        return $result;
-    }
+    abstract public function amount(): int;
 
     public function volumeCredits(): float
     {
