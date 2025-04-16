@@ -19,14 +19,6 @@ class PerformanceCalculator
         $result = 0;
 
         switch ($this->play->type) {
-            case 'comedy':
-                $result = 30000;
-                if ($this->performance->audience > 20) {
-                    $result += 10000 + 500 * ($this->performance->audience - 20);
-                }
-                $result += 300 * $this->performance->audience;
-                break;
-
             default:
                 throw new Error("Unknown type: {$this->play->type}");
         }

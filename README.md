@@ -225,3 +225,4 @@ ps.bat
   - create `TragedyCalculator` and `ComedyCalculator` subclasses and instantiate them at the new `factory method`
   - `replace conditional with polymorphism`
     - move calculation of amounts for `tragedy` to `TragedyCalculator`
+    - move calculation of amounts for `comedy` to `ComedyCalculator`
