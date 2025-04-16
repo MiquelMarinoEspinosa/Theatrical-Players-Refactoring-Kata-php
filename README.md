@@ -229,3 +229,4 @@ ps.bat
     - make the `amount` method `abstract` as well as the `PerformanceCalculator` class
     - push `volumeCredits comedy logic` down to `ComedyCalculator`
     - refactor `volumeCredits` method remove temporal variables
+- add `Martin Fowler` refactor guide
